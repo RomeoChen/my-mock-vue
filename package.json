@@ -1,0 +1,22 @@
+{
+  "name": "my-mock-vue",
+  "version": "1.0.0",
+  "description": "my mock vue from 0 to 1",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RomeoChen/my-mock-vue.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "RomeoChen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RomeoChen/my-mock-vue/issues"
+  },
+  "homepage": "https://github.com/RomeoChen/my-mock-vue#readme"
+}
