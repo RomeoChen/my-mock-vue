@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <header id="root">
+    <p>{{name}}</p>
+    <p>{{message}}</p>
+    <p>{{name}} -- {{message}}</p>
+  </header>
+  <script>
+    const regMustache = /\{\{(.+?)\}\}/g;
+    function compiler(template, data) {
+      const childNodes = template.childNodes;
+      for (const childNode of childNodes) {
+        const type = childNode.nodeType;
+        switch (type) {
+          case 1: // 元素节点，递归
+            compiler(childNode, data);
+            break;
+          case 3: // 文本节点, 判断是否有mustache{{}}
+            let txt = childNode.nodeValue;
+            txt = txt.replace(regMustache, function (_, g) {
+              // 此函数的第0个参数为匹配到的内容，例如 {{name}}
+              // 第n个参数为第n组内容，例如 name
+              return data[g.trim()];
+            })
+            childNode.nodeValue = txt;
+            break;
+          default: break;
+        }
+      }
+    }
+
+    function MyVue(options) {
+      // 内部数据用 _ 开头，只读数据用 $ 开头
+      this._data = options.data;
+      this._el = options.el;
+
+      // 准备模板与父节点
+      this.$el = this._template = document.querySelector(this._el);
+      this._parent = this._template.parentNode;
+      // 开始渲染
+      this.render();
+    }
+
+    MyVue.prototype.render = function () {
+      this.compiler();
+    }
+
+    /** 编译，得到真正的DOM */
+    MyVue.prototype.compiler = function () {
+      let newDOM = this._template.cloneNode(true);
+      compiler(newDOM, this._data);
+      this.update(newDOM);
+    }
+
+    /** 将DOM放入页面中 */
+    MyVue.prototype.update = function (newDOM) {
+      this._parent.replaceChild(newDOM, this._template);
+    }
+
+    let app = new MyVue({
+      el: '#root',
+      data: {
+        name: 'romeo',
+        message: 'handsome top',
+      }
+    })
+  </script>
+</body>
+
+</html>
