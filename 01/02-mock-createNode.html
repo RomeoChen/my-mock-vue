@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <header id="root">
+    <p>{{name}}</p>
+    <p>{{message}}</p>
+    <p>{{name}} -- {{message}}</p>
+  </header>
+  <script>
+    const regMustache = /\{\{(.+?)\}\}/g;
+
+    // 1, 获取节点
+    const rootElement = document.querySelector('#root');
+    const generateRoot = rootElement.cloneNode(true);
+
+    // 2, 声明数据
+    const data = {
+      name: 'romeo',
+      message: 'a very handsome good guy',
+    }
+
+    // 3, 将数据与模板结合(遍历一棵树)
+    // 目前 template 是 DOM 元素（而Vue里面是字符串）
+    // vue中是 DOM -> 字符串模板 -> VNode -> 真正DOM
+    function compiler(template, data) {
+      const childNodes = template.childNodes;
+      for (const childNode of childNodes) {
+        const type = childNode.nodeType;
+        switch(type) {
+          case 1: // 元素节点，递归
+            compiler(childNode, data);
+            break;
+          case 3: // 文本节点, 判断是否有mustache{{}}
+            let txt = childNode.nodeValue;
+            txt = txt.replace(regMustache, function(_, g) {
+              // 此函数的第0个参数为匹配到的内容，例如 {{name}}
+              // 第n个参数为第n组内容，例如 name
+              return data[g.trim()];
+            })
+            childNode.nodeValue = txt;
+            break;
+          default: break;
+        }
+      }
+    }
+
+    compiler(generateRoot, data);
+
+    // 4, 替换节点
+    rootElement.parentElement.replaceChild(generateRoot, rootElement);
+
+    /**
+     * 还有如下问题
+     * 1. 没有整合
+     * 2. 无法替换形如 name.firstName 层级属性
+     * 3. vue 使用虚拟DOM
+     * 
+     * */
+  </script>
+</body>
+</html>
