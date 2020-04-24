@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/RomeoChen/my-mock-vue/issues"
   },
-  "homepage": "https://github.com/RomeoChen/my-mock-vue#readme"
+  "homepage": "https://github.com/RomeoChen/my-mock-vue#readme",
+  "dependencies": {
+    "vue": "^2.6.11"
+  }
 }
