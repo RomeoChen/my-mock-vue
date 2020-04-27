@@ -38,6 +38,11 @@
     }
 
     function MyVue(options) {
+
+      if (!this instanceof MyVue) {
+        console.error('Vue is a constructor and should be called with the `new` keyword')
+      }
+
       // 内部数据用 _ 开头，只读数据用 $ 开头
       this._data = options.data;
       this._el = options.el;
@@ -69,7 +74,7 @@
       el: '#root',
       data: {
         name: 'romeo',
-        message: 'handsome top',
+        message: 'handsome but bad guy',
       }
     })
   </script>

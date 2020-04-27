@@ -51,25 +51,24 @@ function getVNode(node) {
  */
 function parseVNode(vnode) {
   const { tag, type, data, text, children} = vnode;
-  let node;
+  let _node;
   switch(type) {
-    case 1:
-      // 元素节点
-      node = document.createElement(tag);
-      for (const [name, value] of Object.entries(data)) {
-        const attr = document.createAttribute(name);
-        attr.value = value;
-        node.attributes.setNamedItem(attr);
-      }
+    case 1: // 元素节点
+      _node = document.createElement(tag);
+      // 属性
+      Object.entries(data).forEach(([key, value]) => {
+        _node.setAttribute(key, value);
+      })
+      // 递归生成子元素
       for (const child of children) {
-        node.appendChild(parseVNode(child));
+        _node.appendChild(parseVNode(child));
       }
       break;
     case 3:
-      node = document.createTextNode(text);
+      _node = document.createTextNode(text);
       break;
   }
-  return node;
+  return _node;
 }
 
 const root = document.querySelector('#root');
