@@ -9,7 +9,6 @@
   <header id="root">
     <p>{{name}}</p>
     <p>{{message}}</p>
-    <p>{{name}} -- {{message}}</p>
   </header>
   <script>
     const regMustache = /\{\{(.+?)\}\}/g;
@@ -21,12 +20,11 @@
     // 2, 声明数据
     const data = {
       name: 'romeo',
-      message: 'a very handsome good guy',
+      message: 'wants to be rich',
     }
 
     // 3, 将数据与模板结合(遍历一棵树)
     // 目前 template 是 DOM 元素（而Vue里面是字符串）
-    // vue中是 DOM -> 字符串模板 -> VNode -> 真正DOM
     function compiler(template, data) {
       const childNodes = template.childNodes;
       for (const childNode of childNodes) {
@@ -56,9 +54,9 @@
 
     /**
      * 还有如下问题
-     * 1. 没有整合
-     * 2. 无法替换形如 name.firstName 层级属性
-     * 3. vue 使用虚拟DOM
+     * 1. 没有整合(见03)
+     * 2. 无法替换形如 name.firstName 层级属性(见04)
+     * 3. vue 使用虚拟DOM(见05)
      * 
      * */
   </script>
