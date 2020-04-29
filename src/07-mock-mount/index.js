@@ -86,7 +86,7 @@ function MyVue(options) {
 }
 
 MyVue.prototype.$mount = function() {
-  this._render = this.createRenderFn();
+  this._render = this.createRenderFn(); // 带缓存的render函数
   this.mountComponent();
 }
 
