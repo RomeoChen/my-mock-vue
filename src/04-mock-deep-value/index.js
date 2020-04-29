@@ -67,7 +67,7 @@ let app = new MyVue({
   el: '#root',
   data: {
     name: 'romeo',
-    message: 'handsome top',
+    message: 'wants to be rich',
     deep: {
       firstLevel: {
         secondLevel: 'awesome'
