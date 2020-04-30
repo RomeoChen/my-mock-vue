@@ -50,3 +50,20 @@ function makeMap(tagsStr) {
 const isHTMLTag = makeMap(HTMLTags);
 isHTMLTag('div'); // true
 ```
+
+# 响应式原理
+1. 数据是直接存在于Vue实例上的
+例如：
+``` javascript
+const app = new Vue({
+  el: 'root',
+  data: {
+    name: 'romeo'
+  }
+})
+const name = app.name; // romeo
+```
+2. 修改数据时，页面更新
+```javascript
+app.name = 'new name';
+```
