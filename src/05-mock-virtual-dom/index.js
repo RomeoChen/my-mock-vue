@@ -16,12 +16,17 @@ class MyVNode {
     this.type = type;
     this.children = [];
   }
+  /**
+   * 添加子节点
+   */
   appendChild(vnode) {
     this.children.push(vnode);
   }
 }
 
-// 将真实节点转换为虚拟节点
+/**
+ * 将真实节点转换为虚拟节点
+ */
 function getVNode(node) {
   const {nodeType, nodeName, nodeValue, attributes, childNodes} = node;
   let _vnode = null;
