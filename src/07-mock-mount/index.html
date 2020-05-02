@@ -14,7 +14,21 @@
     <p>{{name}} -- {{message}}</p>
     <p>{{deep.firstLevel.secondLevel}}</p>
   </header>
-  <script src="index.js"></script>
+  <script src="my-vue.js"></script>
+  <script>
+    let app = new MyVue({
+        el: '#root',
+        data: {
+          name: 'romeo',
+          message: 'wants to be rich',
+          deep: {
+            firstLevel: {
+              secondLevel: 'awesome'
+            }
+          }
+        }
+      })
+  </script>
 </body>
 
 </html>

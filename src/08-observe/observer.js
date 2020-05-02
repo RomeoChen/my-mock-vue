@@ -59,7 +59,7 @@ function observe(obj) {
  * 这里使用到了闭包
  */
 function defineReactive(obj, key, val) {
-  const childOb = observe(val);
+  observe(val);
 
   Object.defineProperty(obj, key, {
     configurable: true,
@@ -74,5 +74,3 @@ function defineReactive(obj, key, val) {
     },
   })
 }
-
-const ob = observe(data);

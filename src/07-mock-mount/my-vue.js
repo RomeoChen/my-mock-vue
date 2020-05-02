@@ -193,18 +193,3 @@ function parseVNode(vnode) {
   }
   return _node;
 }
-
-
-let app = new MyVue({
-  el: '#root',
-  data: {
-    name: 'romeo',
-    message: 'handsome top',
-    deep: {
-      firstLevel: {
-        secondLevel: 'awesome'
-      }
-    }
-  }
-})
-
