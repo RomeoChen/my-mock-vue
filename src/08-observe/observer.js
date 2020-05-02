@@ -15,7 +15,9 @@ function isObject(obj) {
  */
 function Observer(value) {
   this.value = value;
+  def(value, '__ob__', this);
   if (Array.isArray(value)) {
+    value.__proto__ = arrMethods;
     this.observeArray(value);
   } else {
     this.walk(value);
@@ -51,7 +53,12 @@ function observe(obj) {
   if (!isObject(obj)) {
     return
   }
-  return new Observer(obj);
+  if (obj.hasOwnProperty('__ob__')) { 
+    // 如果已经是响应式
+    return obj.__ob__;
+  } else {
+    return new Observer(obj);
+  }
 }
 
 /**
@@ -71,6 +78,7 @@ function defineReactive(obj, key, val) {
     set: function reactiveSetter(newValue) {
       console.log(`set ${key} from ${val} to ${newValue}`);
       val = newValue;
+      observe(val); // 对于直接给数组复制的情况需要添加响应式
     },
   })
 }
