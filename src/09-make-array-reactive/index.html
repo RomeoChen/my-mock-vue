@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <header id="root">
+    <p>{{name}}</p>
+    <p>{{message}}</p>
+    <p>{{name}} -- {{message}}</p>
+    <p>{{deep.firstLevel.secondLevel}}</p>
+  </header>
+  <script src="../common/index.js"></script>
+  <script>
+    const data = {
+      name: 'romeo',
+      message: 'wants to be rich',
+      deep: {
+        firstLevel: {
+          secondLevel: 'here!'
+        }
+      },
+      arr: [
+        { name: 'jack1' },
+        { name: 'jack2' },
+        { name: 'jack3' },
+      ]
+    }
+  </script>
+  <script src="../08-observe/observer.js"></script>
+  <script src="index.js"></script>
+  <script>
+    const ob = observe(data);
+    console.log(ob);
+    ob.value.arr.push({name: 'jack4'})
+    
+
+  </script>
+</body>
+
+</html>

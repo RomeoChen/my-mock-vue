@@ -2,13 +2,13 @@
 
 # Vue 与模板
 1. 编写页面模板
-  1. 直接在HTML中编写模板
-  2. 构造函数中使用template属性
-  3. 单文件组件<template>
+  - 直接在HTML中编写模板
+  - 构造函数中使用template属性
+  - 单文件组件<template>
 2. 创建Vue实例
 3. 将Vue挂载到DOM中
 
-# 数据驱动模型
+### 数据驱动模型
 Vue的执行流程: 字符串模板 -> AST -> VNode -> 真正DOM
 1. 获得模板
 2. 生成抽象语法树 AST
@@ -16,13 +16,13 @@ Vue的执行流程: 字符串模板 -> AST -> VNode -> 真正DOM
 4. 将新的元素替换页面中的模板
 其中最消耗性能的是：模板 -> AST 这一阶段
 
-# 虚拟DOM(提高性能)
+### 虚拟DOM(提高性能)
 目标：
 1. 将真实DOM转换为虚拟DOM
 2. 将虚拟DOM转换为真实DOM
 思路：与深拷贝类似
 
-# 对于内置标签和自定义标签的处理
+### 对于内置标签和自定义标签的处理
 内置标签如：div,span,p 等等；
 自定义标签就是vue组件。
 因此需要一个函数，来判断是否是内置标签。
@@ -52,6 +52,7 @@ isHTMLTag('div'); // true
 ```
 
 # 响应式原理
+### 将对象的属性转换为响应式
 1. 数据是直接存在于Vue实例上的
 例如：
 ``` javascript
@@ -67,3 +68,11 @@ const name = app.name; // romeo
 ```javascript
 app.name = 'new name';
 ```
+### 添加数组的下列方法使其成为响应式
+- push
+- pop
+- shift
+- unshift
+- splice
+- sort
+- reverse
