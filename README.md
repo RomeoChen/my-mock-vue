@@ -4,7 +4,7 @@
 1. 编写页面模板
   - 直接在HTML中编写模板
   - 构造函数中使用template属性
-  - 单文件组件<template>
+  - 单文件组件`<template>`
 2. 创建Vue实例
 3. 将Vue挂载到DOM中
 

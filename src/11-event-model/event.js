@@ -1,10 +1,11 @@
-const event = (function(){
-  events = {};
+const myEvent = (function () {
+  const events = {};
   return {
+    events,
     /**
      * 注册事件
      */
-    on: function(name, handler) {
+    on: function (name, handler) {
       (events[name] || (events[name] = [])).push(handler);
     },
 
@@ -14,13 +15,13 @@ const event = (function(){
      * 2. 删除某name下的所有事件
      * 3. 删除某name下的所有handler事件
      */
-    off: function(name, handler) {
-      switch(arguments.length) {
-        case 0: 
+    off: function (name, handler) {
+      switch (arguments.length) {
+        case 0:
           events = {};
           break;
         case 1:
-          delete(events[name]);
+          delete (events[name]);
           break;
         case 2:
           const curr = events[name]
@@ -36,7 +37,7 @@ const event = (function(){
     },
 
     /** 触发事件 */
-    emit: function(name) {
+    emit: function (name) {
       const args = Array.prototype.slice.call(arguments, 1);
       const curr = events[name];
       if (!curr) return;
