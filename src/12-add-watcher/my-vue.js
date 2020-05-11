@@ -77,7 +77,7 @@ class MyVue {
     this._data = options.data;
     this.initData();
     this._template = document.querySelector(options.el); // Vue中是字符串模板，这里是DOM
-    this._oldDom = this._template;
+    this._oldDOM = this._template;
     this._parent = this._template.parentNode;
     // 开始渲染
     this.$mount();
@@ -126,8 +126,8 @@ class MyVue {
    */
   _update(newDOM) {
     const currDOM = parseVNode(newDOM);
-    this._parent.replaceChild(currDOM, this._oldDom);
-    this._oldDom = currDOM;
+    this._parent.replaceChild(currDOM, this._oldDOM);
+    this._oldDOM = currDOM;
   }
 }
 
