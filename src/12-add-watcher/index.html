@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <header id="root">
+    <p>{{name}}</p>
+    <p>{{message}}</p>
+    <p>{{name}} -- {{message}}</p>
+    <p>{{deep.firstLevel.secondLevel}}</p>
+  </header>
+  <script src="../common/index.js"></script>
+  <script src="dep.js"></script>
+  <script src="watcher.js"></script>
+  <script src="observer.js"></script>
+  <script src="my-vue.js"></script>
+
+  <script>
+    const data = {
+      name: 'romeo',
+      message: 'wants to be rich',
+      deep: {
+        firstLevel: {
+          secondLevel: 'here!'
+        }
+      },
+      arr: [
+        { name: 'jack1' },
+        { name: 'jack2' },
+        { name: 'jack3' },
+      ]
+    }
+  </script>
+  <script>
+    const app = new MyVue({
+      el: '#root',
+      data: data,
+    })
+  </script>
+</body>
+
+</html>

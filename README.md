@@ -75,4 +75,14 @@ app.name = 'new name';
 - unshift
 - splice
 - sort
-- reverse 
+- reverse
+
+# 发布订阅模式
+解耦，减少各个部分联系
+### 引入watcher与Dep
+Watcher 构造函数，Dep：watcher容器
+Wathcer有以下方法：
+- get 用来进行**计算**或**执行**处理函数
+- update 公共的外部方法，该方法会触发run
+- run 运行方法，判断内部是使用异步还是同步，并会调用 get 方法
+- cleanupDep 清除容器队列  
