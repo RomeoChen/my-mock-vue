@@ -11,7 +11,9 @@ class Watcher {
     this.get();
   }
   get() {
+    pushTarget(this);
     this.getter.call(this.vm);
+    popTarget();
   }
   run() {
     this.get();
@@ -20,6 +22,9 @@ class Watcher {
     this.run();
   }
   cleanup() {
+  }
+  addDep(dep) {
+    dep.addSub(this);
   }
 }
 

@@ -14,13 +14,12 @@
     <p>{{name}} -- {{message}}</p>
     <p>{{deep.firstLevel.secondLevel}}</p>
   </header>
-  <header id="root2">
-    <p>{{math}}</p>
-    <p>{{english}}</p>
-    <p>{{math}} -- {{english}}</p>
-    <p>{{chinese}}</p>
-  </header>
-  
+
+    <div id="second">
+      <p>{{math}}</p>
+      <p>{{chinese}}</p>
+      <p>{{english}}</p>
+    </div>
   <script src="../common/index.js"></script>
   <script src="dep.js"></script>
   <script src="watcher.js"></script>
@@ -40,13 +39,12 @@
         { name: 'jack1' },
         { name: 'jack2' },
         { name: 'jack3' },
-      ],
-      else: 'else',
+      ]
     }
     const data2 = {
       math: 89,
       english: 90,
-      chinese: 90
+      chinese: 88
     }
   </script>
   <script>
@@ -55,7 +53,7 @@
       data: data,
     })
     const app2 = new MyVue({
-      el: '#root2',
+      el: '#second',
       data: data2,
     })
   </script>
